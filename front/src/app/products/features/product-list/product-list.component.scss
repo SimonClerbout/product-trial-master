@@ -1,0 +1,41 @@
+:host {
+    display: block;
+    height: 100%;
+    overflow: auto;
+}
+
+.product-desc {
+    font-style: italic;
+    color: #9AA6B2;
+}
+
+.product-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.product-details-header {
+    display: flex;
+    align-items: center;
+}
+
+.product-price {
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.product-status {
+    width: 10px;
+    height: 10px;
+    border-radius: 8px;
+    text-align: center;
+    padding: 4px;
+    &.available {
+        background-color: #C7DB9C;
+    }
+
+    &.unavailable {
+        background-color: #FF8989;
+    }
+}
