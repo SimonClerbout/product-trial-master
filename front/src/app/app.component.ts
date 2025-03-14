@@ -26,7 +26,8 @@ export class AppComponent implements OnInit {
   cartItemsCount: number = 0;
 
   ngOnInit(): void {
-    this.cacheService.cartChanges.subscribe(cart => {
+    this.cartItemsCount = this.cacheService.getCart().length;
+    this.cacheService.cartItems$.subscribe(cart => {
       this.cartItemsCount = cart.length;
     });
   }

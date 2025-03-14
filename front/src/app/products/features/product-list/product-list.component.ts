@@ -46,9 +46,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.productsService.get().subscribe();
-    this.cacheService.cartItems.subscribe(items => {
-      this.cartItems = items
-    })
+    this.cartItems = this.cacheService.getCart();
   }
 
   public onCreate() {
@@ -93,6 +91,6 @@ export class ProductListComponent implements OnInit {
   }
 
   isInCart(productId: number): boolean {
-    return this.cartItems.some(p => p.id === productId);
-}
+    return this.cacheService.isInCart(productId);
+  }
 }

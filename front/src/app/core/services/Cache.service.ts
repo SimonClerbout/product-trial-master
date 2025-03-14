@@ -21,12 +21,17 @@ export class CacheService {
 
     removeFromCart(productId: number) {
         const currentCart = this.cartItems.getValue();
-        const currentId = this.cartItems.getValue().findIndex(p => p.id === productId);
-        if(currentId !== -1) {
-            this.cartItems.getValue().splice(currentId, 1)
-            this.cartItems.next([...currentCart])
-        }
-        localStorage.setItem('CART', JSON.stringify(this.cartItems.getValue()));
-
+        const updatedCart = currentCart.filter(p => p.id !== productId);
+        this.cartItems.next(updatedCart)
+        localStorage.setItem('CART', JSON.stringify(updatedCart));
     }
+
+    getCart(){
+        const storedProducts = localStorage.getItem('CART');
+        return storedProducts ? JSON.parse(storedProducts) : [];
+    }
+
+    isInCart(productId: number): boolean {
+        return this.cartItems.getValue().some(item => item.id === productId);
+      }
 }
